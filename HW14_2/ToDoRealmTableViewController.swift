@@ -11,7 +11,6 @@ import RealmSwift
 
 class TasksList: Object{
     @objc dynamic var task = ""
-//    @objc dynamic var complited = false
 }
 
 

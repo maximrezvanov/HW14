@@ -17,13 +17,17 @@ class FullNameViewController: UIViewController {
     @IBOutlet weak var secondNameTextField: UITextField!
     
     @IBAction func firstNameEntered(_ sender: UITextField) {
-        Persistance.shared.firstName = firstNameTextField.text
     }
     
     @IBAction func secondNameEntered(_ sender: UITextField) {
-        Persistance.shared.secondName = secondNameTextField.text
     }
     
+    @IBAction func saveAction(_ sender: Any) {
+        Persistance.shared.firstName = firstNameTextField.text
+        Persistance.shared.secondName = secondNameTextField.text
+
+        
+    }
     
     
     override func viewDidAppear(_ animated: Bool) {

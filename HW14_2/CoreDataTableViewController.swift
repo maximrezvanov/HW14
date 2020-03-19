@@ -11,9 +11,9 @@ import CoreData
 
 
 class CoreDataTableViewController: UITableViewController {
-
-   var toDoList: [Task] = []
-
+    
+    var toDoList: [Task] = []
+    
     @IBAction func addTask(_ sender: UIBarButtonItem) {
         let ac = UIAlertController(title: "Add task", message: "add new task", preferredStyle:.alert)
         let ok = UIAlertAction(title: "Ok", style: .default) { action in
@@ -44,8 +44,6 @@ class CoreDataTableViewController: UITableViewController {
         do {
             try context.save()
             toDoList.append(taskObject)
-            print("save")
-
         } catch {
             print(error.localizedDescription)
         }
@@ -108,8 +106,12 @@ class CoreDataTableViewController: UITableViewController {
             
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
-            
-            context.delete(self.toDoList[indexPath.row])
+
+            let editingRow = self.toDoList[indexPath.row]
+            context.delete(editingRow)
+            self.toDoList.remove(at: indexPath.row)
+            print("Task - \((editingRow.taskToDo)!) was completed!")
+
             do {
                 try context.save()
                 self.tableView.reloadData()
